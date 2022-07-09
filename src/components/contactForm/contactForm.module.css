@@ -1,0 +1,31 @@
+/* .label {
+  margin-top: 40px;
+} */
+
+.input {
+  width: 200px;
+  height: 20px;
+  display: block;
+  margin-top: 4px;
+  border-radius: 4px;
+}
+
+.button {
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  /* width: 100px;
+  height: 25px; */
+  background-color: rgb(113, 113, 238);
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.button:hover,
+.button:hover {
+  background-color: blue;
+}
