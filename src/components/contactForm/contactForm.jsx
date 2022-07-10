@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import css from './contactForm.module.css';
 
@@ -11,7 +10,6 @@ class ContactForm extends Component {
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value,
-      // name: e.target.value,
     });
   };
 

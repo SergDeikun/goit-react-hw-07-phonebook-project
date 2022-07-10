@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-
+import Container from './container/container';
 import ContactForm from './contactForm/contactForm';
 import ContactsList from './contactsList/contactsList';
 import Filter from './filter/filter';
-import css from './App.module.css';
 
 class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     filter: '',
-    // name: '',
-    // number: '',
   };
 
   addContact = ({ name, number }) => {
@@ -26,17 +18,16 @@ class App extends Component {
       id: nanoid(),
     };
 
-    this.setState(prevState => ({
-      contacts: [contact, ...prevState.contacts],
-    }));
+    if (this.state.contacts.find(el => el.name === contact.name)) {
+      alert(`${contact.name} is already in contacts`);
+    }
 
-    // if (this.state.contacts.name === ) {
-    //   alert('is already in contacts');
-    // }
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, contact],
+    }));
   };
 
   formSubmitHandler = data => {
-    console.log(data);
   };
 
   filterChange = e => {
@@ -62,7 +53,7 @@ class App extends Component {
     const visibleContacts = this.getVisibleContacts();
 
     return (
-      <div className={css.container}>
+      <Container>
         <h1>Phonebook</h1>
         <ContactForm addContact={this.addContact} />
 
@@ -72,7 +63,7 @@ class App extends Component {
           contacts={visibleContacts}
           onDeleteContact={this.deleteContact}
         />
-      </div>
+      </Container>
     );
   }
 }
