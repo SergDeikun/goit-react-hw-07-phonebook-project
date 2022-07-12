@@ -11,6 +11,20 @@ class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const localContacts = localStorage.getItem('contacts');
+
+    if (localContacts) {
+      this.setState({ contacts: JSON.parse(localContacts) });
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   addContact = ({ name, number }) => {
     const contact = {
       name,
@@ -27,8 +41,7 @@ class App extends Component {
     }));
   };
 
-  formSubmitHandler = data => {
-  };
+  formSubmitHandler = data => {};
 
   filterChange = e => {
     this.setState({ filter: e.target.value });
