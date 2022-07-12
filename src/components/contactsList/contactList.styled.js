@@ -1,15 +1,17 @@
-.list {
-  padding: 0;
-}
+import styled from 'styled-components';
 
-.item {
+export const List = styled.ul`
+  padding: 0;
+`;
+
+export const Item = styled.li`
   width: 300px;
   display: flex;
   justify-content: space-between;
   margin-top: 5px;
-}
+`;
 
-.button {
+export const ButtonDelete = styled.button`
   padding-left: 5px;
   padding-right: 5px;
   margin-left: 20px;
@@ -18,9 +20,9 @@
   background-color: rgb(113, 113, 238);
   color: #fff;
   cursor: pointer;
-}
 
-.button:hover,
-.button:hover {
-  background-color: blue;
-}
+  &:hover,
+  &:focus {
+    background-color: blue;
+  }
+`;

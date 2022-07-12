@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-import Container from './container/container';
-import ContactForm from './contactForm/contactForm';
-import ContactsList from './contactsList/contactsList';
-import Filter from './filter/filter';
+// import Container from '../container/container';
+import { Container } from './App.styled';
+import ContactForm from '../contactForm/contactForm';
+import ContactsList from '../contactsList/contactsList';
+import Filter from '../filter/filter';
 
 class App extends Component {
   state = {
