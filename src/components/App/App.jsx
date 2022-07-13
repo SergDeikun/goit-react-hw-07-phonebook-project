@@ -13,10 +13,14 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const localContacts = localStorage.getItem('contacts');
+    try {
+      const localContacts = localStorage.getItem('contacts');
 
-    if (localContacts) {
-      this.setState({ contacts: JSON.parse(localContacts) });
+      if (localContacts) {
+        this.setState({ contacts: JSON.parse(localContacts) });
+      }
+    } catch (error) {
+      console.log(error.message);
     }
   }
 
