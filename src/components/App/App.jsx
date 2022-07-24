@@ -28,7 +28,7 @@ const App = () => {
       alert(`${newContact.name} is already in contacts`);
     }
 
-    setContacts([...contacts, newContact]);
+    setContacts(prevState => [...prevState, newContact]);
   };
 
   const filterChange = e => {
