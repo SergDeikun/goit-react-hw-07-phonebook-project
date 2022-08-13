@@ -1,17 +1,23 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { nanoid } from 'nanoid';
+
 import { Input } from './contactForm.styled';
 import { ButtonSubmit } from './contactForm.styled';
+import { addContact } from 'redux/contacts';
 
-const ContactForm = ({ addContact }) => {
+const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const contacts = useSelector(state => state.contacts.items);
+  const dispach = useDispatch();
 
   const handleChange = e => {
     const { name, value } = e.target;
 
     switch (name) {
       case 'name':
-        setName(value.toLowerCase());
+        setName(value);
         break;
 
       case 'number':
@@ -23,10 +29,28 @@ const ContactForm = ({ addContact }) => {
     }
   };
 
+  const addNewContact = newContact => {
+    const id = nanoid();
+
+    if (contacts.find(contact => contact.name === newContact.name)) {
+      alert(`${newContact.name} is already in contacts`);
+      return;
+    }
+
+    dispach(
+      addContact({
+        id,
+        name,
+        number,
+      })
+    );
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
 
-    addContact(name, number);
+    addNewContact({ name });
+
     reset();
   };
 
@@ -36,7 +60,7 @@ const ContactForm = ({ addContact }) => {
   };
 
   return (
-    <form onSubmit={e => handleSubmit(e)}>
+    <form onSubmit={handleSubmit}>
       <label>
         Name
         <Input
