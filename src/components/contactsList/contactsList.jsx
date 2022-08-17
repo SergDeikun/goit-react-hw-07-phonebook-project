@@ -4,33 +4,43 @@ import { List } from './contactList.styled';
 import { Item } from './contactList.styled';
 import { ButtonDelete } from './contactList.styled';
 import { removeContact } from 'redux/contacts';
+import {
+  useGetContactsQuery,
+  useDeleteContactMutation,
+} from '../../redux/contactsApiSlice/contactsSlice';
 
 const ContactsList = () => {
-  const contacts = useSelector(state => state.contacts.items);
-  const filter = useSelector(state => state.filter.value);
-  const dispatch = useDispatch();
+  const { data } = useGetContactsQuery();
+  const [deleteContact] = useDeleteContactMutation();
 
-  const normalizeFilter = filter.trim().toLowerCase();
-  const visibleContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizeFilter)
-  );
+  // const contacts = useSelector(state => state.contacts.items);
+  const filter = useSelector(state => state.filter.value);
+  console.log(filter);
+  // const dispatch = useDispatch();
+
+  // const normalizeFilter = filter.trim().toLowerCase();
+  // const visibleContacts = data.filter(contact =>
+  //   contact.name.toLowerCase().includes(normalizeFilter)
+  // );
 
   const handleDeleteContact = e => {
-    dispatch(removeContact(e.target.id));
+    deleteContact(e.target.id);
+    // dispatch(removeContact(e.target.id));
   };
 
   return (
     <List>
-      {visibleContacts.map(({ name, id, number }) => {
-        return (
-          <Item key={id}>
-            {name}: {number}
-            <ButtonDelete type="button" id={id} onClick={handleDeleteContact}>
-              Delete
-            </ButtonDelete>
-          </Item>
-        );
-      })}
+      {data &&
+        data.map(({ name, id, phoneNumber }) => {
+          return (
+            <Item key={id}>
+              {name}: {phoneNumber}
+              <ButtonDelete type="button" id={id} onClick={handleDeleteContact}>
+                Delete
+              </ButtonDelete>
+            </Item>
+          );
+        })}
     </List>
   );
 };
