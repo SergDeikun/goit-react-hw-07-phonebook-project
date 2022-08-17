@@ -1,20 +1,20 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { nanoid } from 'nanoid';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { nanoid } from 'nanoid';
 
 import { Input } from './contactForm.styled';
 import { ButtonSubmit } from './contactForm.styled';
-import { addContact } from 'redux/contacts';
+// import { addContact } from 'redux/contacts';
 import {
   useAddContactMutation,
-  useGetContactsQuery,
+  // useGetContactsQuery,
 } from '../../redux/contactsApiSlice/contactsSlice';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   // const contacts = useSelector(state => state.contacts.items);
-  const dispach = useDispatch();
+  // const dispach = useDispatch();
   const [addContactt] = useAddContactMutation();
   // const { data } = useGetContactsQuery();
 
