@@ -1,14 +1,9 @@
 import styled from 'styled-components';
 
 export const List = styled.ul`
-  padding: 0;
-`;
-
-export const Item = styled.li`
-  width: 300px;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 5px;
+  list-style: none;
+  padding-left: 10px;
+  padding-right: 10px;
 `;
 
 export const ButtonDelete = styled.button`

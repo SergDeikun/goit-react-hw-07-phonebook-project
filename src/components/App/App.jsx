@@ -1,17 +1,18 @@
+import { Routes, Route } from 'react-router-dom';
+
 import { Container } from './App.styled';
-import ContactForm from '../contactForm/contactForm';
-import ContactsList from '../contactsList/contactsList';
-import Filter from '../filter/filter';
+import Contacts from 'pages/contacts/contacts';
+import PersonCard from 'pages/personCard/personCard';
+import NewContact from 'pages/newContact/newContact';
 
 const App = () => {
   return (
     <Container>
-      <h1>Phonebook</h1>
-      <ContactForm />
-
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactsList />
+      <Routes>
+        <Route path="/" element={<Contacts />} />
+        <Route path="/contacts/:contactId" element={<PersonCard />} />
+        <Route path="/newContact" element={<NewContact />} />
+      </Routes>
     </Container>
   );
 };

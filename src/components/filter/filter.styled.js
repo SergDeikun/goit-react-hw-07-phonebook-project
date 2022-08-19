@@ -1,16 +1,48 @@
 import styled from 'styled-components';
 
-export const FilterInput = styled.input`
-  width: 200px;
-  height: 20px;
-  display: block;
-  margin-top: 4px;
-  border-radius: 4px;
+export const Wrap = styled.div`
+  display: flex;
+  width: 720px;
+  align-items: center;
+  margin-left: 100px;
+  border-radius: 10px;
+  background-color: rgb(241, 243, 244);
 
   &:focus {
-    border-color: blue;
-    outline: none;
-    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
-      rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    opacity: 1;
+    box-shadow: rgba(65, 69, 73, 0.3) 0px 1px 1px 0px,
+      rgba(65, 69, 73, 0.15) 0px 1px 3px 1px;
   }
+`;
+
+export const SearchBtn = styled.div`
+  display: blok;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  padding: 8px;
+  margin: 3px;
+
+  &:hover {
+    opacity: 1;
+    box-shadow: rgba(65, 69, 73, 0.3) 0px 1px 1px 0px,
+      rgba(65, 69, 73, 0.15) 0px 1px 3px 1px;
+  }
+`;
+
+export const FilterInput = styled.input`
+  width: 100%;
+  height: 46px;
+  border-radius: 10px;
+  background-color: rgb(241, 243, 244);
+  border: 1px solid rgba(0, 0, 0, 0);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  line-height: 27px;
+  text-decoration: none solid rgb(0, 0, 0);
+  outline: none;
+  text-align: start;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
