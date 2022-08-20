@@ -4,6 +4,7 @@ import { BsSearch } from 'react-icons/bs';
 
 import { Wrap, FilterInput, SearchBtn } from './filter.styled';
 // import { useGetContactsQuery } from '../../redux/contactsApiSlice/contactsSlice';
+// import contacts from 'redux/contacts';
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -14,13 +15,14 @@ const Filter = () => {
   // const { data } = useGetContactsQuery();
 
   const handlefilterChange = e => {
-    // const filter = e.target.value;
-    //
+    const filter = e.target.value;
+
     // const normalizeFilter = filter.trim().toLowerCase();
     // const visibleContacts = data.filter(contact =>
     //   contact.name.toLowerCase().includes(normalizeFilter)
     // );
-    dispatch(setFilter(e.target.value));
+
+    dispatch(setFilter(filter));
   };
 
   return (
@@ -36,20 +38,6 @@ const Filter = () => {
         placeholder="Search"
       />
     </Wrap>
-    // ===================
-    // <label>
-    //   {/* Find contacts by name */}
-    //   <button>
-    //     <AiOutlineSearch />
-    //   </button>
-
-    //   <FilterInput
-    //     type="text"
-    //     value={value}
-    //     onChange={handlefilterChange}
-    //     placeholder="Search"
-    //   />
-    // </label>
   );
 };
 

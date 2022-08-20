@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
 export const Wrap = styled.div`
-  position: fixed;
-  /* position: sticky; */
+  position: sticky;
   top: 0;
   display: flex;
   align-items: center;
-  padding: 5px;
+  padding: 10px;
   width: 100%;
   background-color: white;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,

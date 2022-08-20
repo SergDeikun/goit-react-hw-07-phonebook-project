@@ -3,13 +3,10 @@ import { Link } from 'react-router-dom';
 
 export const ItemWrap = styled.div`
   display: flex;
-  /* align-items: center; */
 `;
 
 export const Item = styled.li`
   display: flex;
-  /* outline: 1px solid teal; */
-  /* height: 56px; */
   width: 100%;
 
   align-items: center;

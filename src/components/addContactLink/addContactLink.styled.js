@@ -7,7 +7,6 @@ export const AddNewContactLink = styled(Link)`
   text-align: center;
   justify-content: center;
   align-items: center;
-  /* align-items: baseline; */
   height: 44px;
   width: 160px;
   margin-left: 100px;

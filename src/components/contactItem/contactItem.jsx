@@ -5,6 +5,7 @@ import { ItemWrap, Item, Phone, ItemLink, Name } from './contactItem.styled';
 
 const ContactItem = () => {
   const { data } = useGetContactsQuery();
+
   const style = {
     marginLeft: '5',
     fill: '#008080',

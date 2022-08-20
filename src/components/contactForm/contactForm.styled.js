@@ -1,34 +1,53 @@
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
-export const Input = styled.input`
-  width: 200px;
-  height: 20px;
-  display: block;
-  margin-top: 4px;
-  border-radius: 4px;
+// export const Form = styled.form`
+//   margin-left: 10px;
+// `;
+// export const InputsWrap = styled.div`
+//   padding-left: 30px;
+// `;
 
-  &:focus {
-    border-color: blue;
-    outline: none;
-    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
-      rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
-  }
-`;
+// export const Input = styled.input`
+//   width: 553px;
+//   height: 24px;
+//   display: block;
+//   margin-left: 10px;
+//   font-size: 14px;
+//   font-weight: 400;
+//   line-height: 24px;
+//   letter-spacing: 0.2px;
+//   outline: none;
 
-export const ButtonSubmit = styled.button`
-  margin-top: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  background-color: rgb(113, 113, 238);
-  border: none;
-  border-radius: 4px;
-  color: #fff;
-  cursor: pointer;
+//   border-left-style: none;
+//   border-top-style: none;
+//   border-right-style: none;
+//   border-bottom-color: #202124;
 
-  &:hover,
-  &:focus {
-    background-color: blue;
-  }
-`;
+//   &:focus {
+//     border-bottom-color: blue;
+//   }
+// `;
+
+// export const PhoneWrap = styled.div`
+//   display: flex;
+//   align-items: center;
+//   margin-top: 16px;
+// `;
+
+// export const ButtonSubmit = styled.button`
+//   margin-top: 10px;
+//   padding-left: 10px;
+//   padding-right: 10px;
+//   padding-top: 5px;
+//   padding-bottom: 5px;
+//   background-color: rgb(113, 113, 238);
+//   border: none;
+//   border-radius: 4px;
+//   color: #fff;
+//   cursor: pointer;
+
+//   &:hover,
+//   &:focus {
+//     background-color: blue;
+//   }
+// `;

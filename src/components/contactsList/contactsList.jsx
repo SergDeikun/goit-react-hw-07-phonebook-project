@@ -52,14 +52,14 @@
 
 // export default ContactsList;
 
-import { useSelector } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
 
 import { List } from './contactList.styled';
-import { Item } from './contactList.styled';
-import { ButtonDelete } from './contactList.styled';
-import Filter from '../filter/filter';
-import DeleteButton from 'components/deleteButton/deleteButton';
+// import { Item } from './contactList.styled';
+// import { ButtonDelete } from './contactList.styled';
+// import Filter from '../filter/filter';
 import ContactItem from 'components/contactItem/contactItem';
+import Spinner from '../spinner/spinner';
 
 // import { removeContact } from 'redux/contacts';
 import {
@@ -68,12 +68,12 @@ import {
 } from '../../redux/contactsApiSlice/contactsSlice';
 
 const ContactsList = () => {
-  const { data, isSuccess } = useGetContactsQuery();
+  const { isSuccess, isFetching } = useGetContactsQuery();
   //todo скоріш за все тут потрібно тільки isSuccess
   // const [deleteContact] = useDeleteContactMutation();
 
   // const contacts = useSelector(state => state.contacts.items);
-  const filter = useSelector(state => state.filter.value);
+  // const filter = useSelector(state => state.filter.value);
   // console.log(filter);
   // const dispatch = useDispatch();
 
@@ -87,7 +87,13 @@ const ContactsList = () => {
   // dispatch(removeContact(e.target.id));
   // };
 
-  return <List> {isSuccess && <ContactItem />}</List>;
+  return (
+    <div>
+      {isFetching && <Spinner />}
+
+      <List> {isSuccess && <ContactItem />}</List>
+    </div>
+  );
 };
 
 export default ContactsList;

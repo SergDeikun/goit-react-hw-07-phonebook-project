@@ -1,29 +1,35 @@
-import {
-  useDeleteContactMutation,
-  // useGetContactsQuery,
-} from '../../redux/contactsApiSlice/contactsSlice';
+import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { useDeleteContactMutation } from '../../redux/contactsApiSlice/contactsSlice';
 import { useParams } from 'react-router-dom';
 import { DeleteBtn } from './deleteButton.styled';
 
-const DeleteButton = () => {
+const DeleteButton = ({ title }) => {
   const { contactId } = useParams();
+  const navigate = useNavigate();
 
-  // const { data, isSuccess } = useGetContactsQuery();
   const [deleteContact] = useDeleteContactMutation();
 
-  const handleDeleteContact = e => {
-    deleteContact(contactId);
+  const handleDeleteContact = async () => {
+    try {
+      await deleteContact(contactId);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <>
-      {/* {isSuccess && ( */}
+    <div>
       <DeleteBtn type="button" onClick={handleDeleteContact}>
-        Delete
+        {title}
       </DeleteBtn>
-      {/* )} */}
-    </>
+    </div>
   );
+};
+
+DeleteButton.propTypes = {
+  title: PropTypes.string.isRequired,
 };
 
 export default DeleteButton;
