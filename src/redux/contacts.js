@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+// import { contactsApi } from './contactsApiSlice/contactsApiSlice';
 
 const initialState = {
   items: [],
@@ -7,6 +8,15 @@ const initialState = {
 export const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
+
+  // extraReducers: builder => {
+  //   builder.addMatcher(
+  //     contactsApi.endpoints.addContact.matchFulfilled,
+  //     (state, action) => {
+  //       state.items = action.payload.data;
+  //     }
+  //   );
+  // },
 
   reducers: {
     addContact: (state, action) => {

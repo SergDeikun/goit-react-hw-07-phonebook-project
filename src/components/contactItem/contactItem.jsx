@@ -1,27 +1,61 @@
-import { IoMdContact } from 'react-icons/io';
+import { useSelector } from 'react-redux';
 
-import { useGetContactsQuery } from '../../redux/contactsApiSlice/contactsSlice';
-import { ItemWrap, Item, Phone, ItemLink, Name } from './contactItem.styled';
+// import { IoMdContact } from 'react-icons/io';
+
+import {
+  useGetContactsQuery,
+  useDeleteContactMutation,
+  // useUpdateContactByIdMutation,
+} from '../../redux/contactsApiSlice/contactsApiSlice';
+import BackgroundLetterAvatars from '../avatar/avatar';
+import BasicModal from '../updateModal/updateModal';
+// import DeleteButton from 'components/deleteButton/deleteButton';
+
+import {
+  ItemWrap,
+  Item,
+  Phone,
+  ItemLink,
+  BoxName,
+  Name,
+} from './contactItem.styled';
 
 const ContactItem = () => {
   const { data } = useGetContactsQuery();
-  console.log(data);
+  const [deleteContact] = useDeleteContactMutation();
+  // const [updateContact] = useUpdateContactByIdMutation();
 
-  const style = {
-    marginLeft: '5',
-    fill: '#008080',
-  };
+  // const style = {
+  //   marginLeft: '5',
+  //   fill: '#008080',
+  // };
+  const filter = useSelector(state => state.filter.value);
 
-  return data.map(({ name, id, phoneNumber }) => {
+  const normalizeFilter = filter.trim().toLowerCase();
+  const visibleContacts = data.filter(contact =>
+    contact.name.toLowerCase().includes(normalizeFilter)
+  );
+
+  return visibleContacts.map(({ name, id, number }) => {
     return (
       <ItemWrap key={id}>
-        <ItemLink to={`/contacts/${id}`}>
-          <Item key={id}>
-            <IoMdContact size="48" style={style} />
+        <Item key={id}>
+          <ItemLink to={`/contacts/${id}`}>
+            <BackgroundLetterAvatars name={name} />
+            {/* <BoxName> */}
             <Name>{name}</Name>
-            <Phone>{phoneNumber}</Phone>
-          </Item>
-        </ItemLink>
+            {/* </BoxName> */}
+            <BoxName>
+              <Phone>{number}</Phone>
+            </BoxName>
+          </ItemLink>
+          <button type="button" onClick={() => deleteContact(id)}>
+            Delete
+          </button>
+          <BasicModal />
+
+          {/* <DeleteButton /> */}
+        </Item>
       </ItemWrap>
     );
   });

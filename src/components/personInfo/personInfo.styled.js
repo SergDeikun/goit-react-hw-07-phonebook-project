@@ -4,12 +4,18 @@ export const WrapPersonInfo = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  /* width: 100%; */
   font-size: 28px;
   font-weight: 400;
   line-height: 36px;
   border-bottom: 1px solid #000;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-bottom: 10px;
+  /* padding-left: 10px;
+  padding-right: 10px; */
+`;
+
+export const Name = styled.p`
+  margin-left: 10px;
 `;
 
 export const BoxContactInfo = styled.div`

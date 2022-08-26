@@ -3,24 +3,23 @@ import { useNavigate } from 'react-router-dom';
 import { IoMdContact } from 'react-icons/io';
 import { MdOutlineLocalPhone } from 'react-icons/md';
 import { FaRegUser } from 'react-icons/fa';
-// import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import {
   useAddContactMutation,
-  // useGetContactsQuery,
-} from '../../redux/contactsApiSlice/contactsSlice';
-import SaveButton from 'components/saveButton/saveButton';
+  useGetContactsQuery,
+} from '../../redux/contactsApiSlice/contactsApiSlice';
+// import SaveButton from 'components/saveButton/saveButton';
 
-import { Input, Form, InputsWrap, PhoneWrap } from './newContactCard.styled';
+import { SaveBtn, Input, Form, PhoneWrap } from './newContactCard.styled';
 
 const NewContactCard = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const navigate = useNavigate();
-  // const { isFetching, isSuccess } = useGetContactsQuery();
-  const [addContactt] = useAddContactMutation();
-  // const notify = () => toast.success('Contact saved!');
+  const { data } = useGetContactsQuery();
+  const [addContact] = useAddContactMutation();
+  const notify = () => toast.error(`${name} is already in contacts`);
 
   const style = {
     fill: '#5f6368',
@@ -46,14 +45,17 @@ const NewContactCard = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    if (
+      data.find(contact => contact.name.toLowerCase() === name.toLowerCase())
+    ) {
+      notify(`${name} is already in contacts`);
+      reset();
+      return;
+    }
 
     try {
-      await addContactt({
-        name: e.target.name.value,
-        phoneNumber: e.target.number.value,
-      });
-
-      navigate('/');
+      await addContact({ name, number });
+      navigate('/contacts');
     } catch (error) {
       console.log(error);
     }
@@ -67,12 +69,16 @@ const NewContactCard = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      {/* <ToastContainer /> */}
+    <>
+      <ToastContainer position="top-left" autoClose={1000} />
+      <Form onSubmit={handleSubmit}>
+        {/* {isSuccess && <BasicAlerts />} */}
+        {/* <Alert /> */}
+        {/* <BasicAlerts /> */}
 
-      <IoMdContact size="272" style={style} />
-      <SaveButton title="Save"></SaveButton>
-      <InputsWrap>
+        <IoMdContact size="100" style={style} />
+        <SaveBtn type="submit">Save</SaveBtn>
+        {/* <SaveButton title="Save"></SaveButton> */}
         <PhoneWrap>
           <FaRegUser size="20" />
           <label>
@@ -104,8 +110,8 @@ const NewContactCard = () => {
             />
           </label>
         </PhoneWrap>
-      </InputsWrap>
-    </Form>
+      </Form>
+    </>
   );
 };
 

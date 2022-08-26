@@ -11,16 +11,16 @@ export const SaveBtn = styled.button`
   font-weight: 500;
   letter-spacing: 0.15px;
   line-height: 20px;
-  background-color: blue;
-  color: #fff;
+  background-color: #0088cc;
+  color: #ffffff;
   border-radius: 10px;
   border: none;
   cursor: pointer;
+  transition: box-shadow 250ms;
 
   &:hover {
-    background-color: #174ea6;
-
-    box-shadow: 0 1px 3px 0 rgb(60 64 67 / 30%),
-      0 4px 8px 3px rgb(60 64 67 / 15%);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 1),
+      -23px 0 20px -23px rgba(0, 0, 0, 0.8),
+      23px 0 20px -23px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
   }
 `;
