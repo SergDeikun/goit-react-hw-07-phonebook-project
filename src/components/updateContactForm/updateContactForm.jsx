@@ -1,0 +1,158 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+
+//  import { createPortal } from 'react-dom';
+import { useNavigate } from 'react-router-dom';
+import { IoIosClose } from 'react-icons/io';
+import { IoMdContact } from 'react-icons/io';
+import { MdOutlineLocalPhone } from 'react-icons/md';
+import { FaRegUser } from 'react-icons/fa';
+import SaveButton from 'components/saveButton/saveButton';
+
+import {
+  Form,
+  OpenModalBtn,
+  Input,
+  PhoneWrap,
+  CloseBtn,
+} from './updateContactForm.styled';
+
+import { useUpdateContactByIdMutation } from 'redux/contactsApiSlice/contactsApiSlice';
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  height: 400,
+  bgcolor: '#FFFFFF',
+  // border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
+const avatarStyle = {
+  fill: '#8C8C8C',
+  display: 'block',
+  marginLeft: 'auto',
+  marginRight: 'auto',
+};
+
+const BtnStyle = {
+  bgcolor: '#FFFFFF',
+};
+
+// const modalRoot = document.querySelector('#modal-root');
+
+const UpdateContactForm = ({ contactId }) => {
+  const contacts = useSelector(state => state.contacts.items);
+  const navigate = useNavigate();
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const [open, setOpen] = useState(false);
+  const [updateContact] = useUpdateContactByIdMutation();
+
+  const contact = contacts
+    ? contacts.find(contact => contact.id === contactId)
+    : {};
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+
+      case 'number':
+        setNumber(value.toLowerCase());
+        break;
+
+      default:
+        return;
+    }
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+    navigate(`/contacts/${contactId}`);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    navigate('/contacts');
+  };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    await updateContact({ name, number });
+    setOpen(false);
+    navigate('/contacts');
+  };
+
+  return (
+    <>
+      {contacts && (
+        <>
+          <OpenModalBtn onClick={handleOpen} sx={BtnStyle}>
+            update
+          </OpenModalBtn>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <CloseBtn onClick={handleClose}>
+                <IoIosClose size="26" />
+              </CloseBtn>
+              <Form onSubmit={handleSubmit}>
+                <IoMdContact size="200" style={avatarStyle} />
+                <PhoneWrap>
+                  <FaRegUser size="20" />
+                  <label>
+                    <Input
+                      type="text"
+                      name="name"
+                      pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                      title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                      required
+                      value={contact.name}
+                      onChange={handleChange}
+                      placeholder="Name"
+                    />
+                  </label>
+                </PhoneWrap>
+
+                <PhoneWrap>
+                  <MdOutlineLocalPhone size="20" />
+                  <label>
+                    <Input
+                      type="tel"
+                      name="number"
+                      pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                      title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                      required
+                      value={contact.number}
+                      onChange={handleChange}
+                      placeholder="Number"
+                    />
+                  </label>
+                </PhoneWrap>
+                <SaveButton title="Save" />
+              </Form>
+            </Box>
+          </Modal>
+          {/* modalRoot */}
+        </>
+      )}
+    </>
+  );
+};
+
+export default UpdateContactForm;

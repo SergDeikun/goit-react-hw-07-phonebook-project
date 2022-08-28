@@ -4,29 +4,27 @@ import { lazy, Suspense } from 'react';
 
 import { Container } from './App.styled';
 import AppBar from 'components/appBar/appBar';
-import PrivateRoutes from 'components/privateRouts/privateRouts';
-import { useCurrentUserQuery } from '../../redux/userApiSlice/userApiSlice';
 import Spinner from 'components/spinner/spinner';
-import BasicModal from 'components/modal/modal';
-// import updateBasicModal from 'components/updateModal/updateModal';
-import PersonInfo from 'components/personInfo/personInfo';
+import PrivateRoutes from 'components/privateRouts/privateRouts';
+import NotFound from 'pages/notFound/notFound';
 
-// import MenuAppBar from 'components/appBar/appBar';
-const Contacts = lazy(() => import('../../pages/contacts/contacts'));
-// const ContactCard = lazy(() =>
-//   import('../../pages/addNewContact/addNewContact')
-// );
-// const NewContact = lazy(() =>
-//   import('../../pages/addNewContact/addNewContact')
-// );
+import { useCurrentUserQuery } from '../../redux/userApiSlice/userApiSlice';
+
+// =============================================
+
 const LoginPage = lazy(() => import('../../pages/loginPage/loginPage'));
 const RegisterPage = lazy(() =>
   import('../../pages/registerPage/registerPage')
 );
+const Contacts = lazy(() => import('../../pages/contacts/contacts'));
+const ContactCard = lazy(() => import('../../pages/contactCard/contactCard'));
+const AddContactForm = lazy(() => import('../addContactForm/addContactForm'));
+const UpdateContactForm = lazy(() =>
+  import('../updateContactForm/updateContactForm')
+);
 
 const App = () => {
   const { token } = useSelector(state => state.user);
-
   useCurrentUserQuery(undefined, {
     skip: !token,
   });
@@ -38,12 +36,17 @@ const App = () => {
         <Routes>
           <Route path="/contacts" element={<PrivateRoutes />}>
             <Route path="/contacts" element={<Contacts />}>
-              <Route path="contacts" element={<BasicModal />} />
+              <Route path="contacts" element={<AddContactForm />} />
+              <Route path=":contactId" element={<UpdateContactForm />} />
             </Route>
-            <Route path="/contacts/:contactId" element={<PersonInfo />} />
+            <Route
+              path="/contacts/:contactId/personInfo"
+              element={<ContactCard />}
+            />
           </Route>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </Container>

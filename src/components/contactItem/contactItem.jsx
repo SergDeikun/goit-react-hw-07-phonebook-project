@@ -1,38 +1,30 @@
 import { useSelector } from 'react-redux';
-
-// import { IoMdContact } from 'react-icons/io';
-
-import {
-  useGetContactsQuery,
-  useDeleteContactMutation,
-  // useUpdateContactByIdMutation,
-} from '../../redux/contactsApiSlice/contactsApiSlice';
+import { RiDeleteBin6Line } from 'react-icons/ri';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import BackgroundLetterAvatars from '../avatar/avatar';
-import BasicModal from '../updateModal/updateModal';
-// import DeleteButton from 'components/deleteButton/deleteButton';
+
+import { useDeleteContactMutation } from '../../redux/contactsApiSlice/contactsApiSlice';
+
+import UpdateContactForm from 'components/updateContactForm/updateContactForm';
 
 import {
   ItemWrap,
   Item,
   Phone,
   ItemLink,
-  BoxName,
   Name,
+  DeleteBtn,
 } from './contactItem.styled';
 
 const ContactItem = () => {
-  const { data } = useGetContactsQuery();
-  const [deleteContact] = useDeleteContactMutation();
-  // const [updateContact] = useUpdateContactByIdMutation();
+  const contacts = useSelector(state => state.contacts.items);
 
-  // const style = {
-  //   marginLeft: '5',
-  //   fill: '#008080',
-  // };
+  const [deleteContact] = useDeleteContactMutation();
+
   const filter = useSelector(state => state.filter.value);
 
   const normalizeFilter = filter.trim().toLowerCase();
-  const visibleContacts = data.filter(contact =>
+  const visibleContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(normalizeFilter)
   );
 
@@ -40,21 +32,25 @@ const ContactItem = () => {
     return (
       <ItemWrap key={id}>
         <Item key={id}>
-          <ItemLink to={`/contacts/${id}`}>
+          <ItemLink to={`/contacts/${id}/personInfo`}>
             <BackgroundLetterAvatars name={name} />
-            {/* <BoxName> */}
-            <Name>{name}</Name>
-            {/* </BoxName> */}
-            <BoxName>
-              <Phone>{number}</Phone>
-            </BoxName>
-          </ItemLink>
-          <button type="button" onClick={() => deleteContact(id)}>
-            Delete
-          </button>
-          <BasicModal />
 
-          {/* <DeleteButton /> */}
+            <Name>{name}</Name>
+
+            <Phone>{number}</Phone>
+          </ItemLink>
+
+          <DeleteBtn
+            type="button"
+            onClick={() => {
+              deleteContact(id);
+              Notify.success(`Сontact deleted`);
+            }}
+          >
+            <RiDeleteBin6Line size={25} />
+          </DeleteBtn>
+
+          <UpdateContactForm contactId={id} />
         </Item>
       </ItemWrap>
     );

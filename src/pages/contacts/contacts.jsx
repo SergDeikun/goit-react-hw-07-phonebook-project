@@ -1,22 +1,14 @@
-// import Logo from 'components/logo/logo';
-import { Outlet } from 'react-router-dom';
+// import { Outlet } from 'react-router-dom';
 import ContactsList from 'components/contactsList/contactsList';
-// import Filter from 'components/filter/filter';
-// import AddContact from 'components/addContactLink/addContactLink';
-// import { Wrap } from './contacts.styled';
+import { useGetContactsQuery } from 'redux/contactsApiSlice/contactsApiSlice';
 
 const Contacts = () => {
+  useGetContactsQuery();
+
   return (
     <>
-      {/* <Wrap> */}
-      {/* <Logo /> */}
-      {/* <Logo src={avatar} alt="" /> */}
-      {/* <Filter /> */}
-      {/* <AddContact /> */}
-      {/* </Wrap> */}
-
       <ContactsList />
-      <Outlet />
+      {/* <Outlet /> */}
     </>
   );
 };

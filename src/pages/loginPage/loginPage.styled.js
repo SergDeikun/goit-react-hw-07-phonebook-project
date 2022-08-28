@@ -58,6 +58,7 @@ export const LoginBtn = styled.button`
   cursor: pointer;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 10px;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
   transition: background-color 250ms;

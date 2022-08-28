@@ -34,7 +34,6 @@ export const userApi = createApi({
       query: () => ({
         url: '/users/logout',
         method: 'POST',
-        // body: payload,
       }),
       invalidatesTags: ['User'],
     }),

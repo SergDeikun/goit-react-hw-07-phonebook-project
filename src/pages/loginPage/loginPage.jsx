@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLoginMutation } from 'redux/userApiSlice/userApiSlice';
 
+// import Box from '@mui/material/Box';
+// import TextField from '@mui/material/TextField';
+
 import {
   WrapLoginForm,
   // RegisterTitle,
@@ -14,8 +17,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const [login, status] = useLoginMutation();
-  const { isLoading } = status;
+  const [login] = useLoginMutation();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -36,6 +38,11 @@ const LoginPage = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
+    if (!email || !password) {
+      console.log('oops');
+      return;
+    }
+
     await login({ email, password });
     navigate('/contacts');
     setEmail('');
@@ -44,7 +51,6 @@ const LoginPage = () => {
 
   return (
     <WrapLoginForm>
-      {/* <RegisterTitle>Create an account</RegisterTitle> */}
       <LoginForm onSubmit={handleSubmit} autoComplete="off">
         <label>
           <Input
@@ -66,7 +72,8 @@ const LoginPage = () => {
           />
         </label>
 
-        <LoginBtn type="submit" disabled={isLoading}>
+        {/* <LoginBtn type="submit" disabled={isLoading} onClick={handleSubmit}> */}
+        <LoginBtn type="submit" onClick={handleSubmit}>
           Login
         </LoginBtn>
       </LoginForm>
@@ -75,3 +82,36 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+// {
+//   /* <Box
+//         component="form"
+//         sx={{
+//           '& > :not(style)': { m: 1, width: '35ch' },
+//         }}
+//         // noValidate
+//         autoComplete="off"
+//       >
+//         <TextField
+//           id="outlined-basic"
+//           label="Email"
+//           variant="outlined"
+//           type="email"
+//           name="email"
+//           value={email}
+//           onChange={handleChange}
+//         />
+//         <TextField
+//           id="outlined-basic"
+//           label="Password"
+//           variant="outlined"
+//           type="password"
+//           name="password"
+//           value={password}
+//           onChange={handleChange}
+//         />
+//         <LoginBtn type="submit" onClick={handleSubmit}>
+//           Login
+//         </LoginBtn>
+//       </Box> */
+// }

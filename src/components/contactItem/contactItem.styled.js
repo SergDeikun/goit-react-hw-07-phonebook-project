@@ -20,33 +20,31 @@ export const Item = styled.li`
 
 export const ItemLink = styled(Link)`
   align-items: center;
-  /* justify-content: space-between; */
 
   display: flex;
   width: 100%;
-  /* height: 56px; */
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.2px;
   line-height: 20px;
   letter-spacing: 0.2px;
-  /* text-decoration: none; */
   color: black;
   cursor: pointer;
 `;
-export const BoxName = styled.div`
-  text-align: start;
-  width: 100px;
-  /* margin-left: auto; */
-`;
 
 export const Name = styled.p`
+  text-align: start;
+  width: 200px;
   margin-left: 16px;
 `;
 
 export const Phone = styled.p`
   text-align: start;
-
+  width: 600px;
   margin-left: 300px;
-  margin-right: 5px;
+`;
+
+export const DeleteBtn = styled.button`
+  border: none;
+  background-color: #f5f5f5;
 `;

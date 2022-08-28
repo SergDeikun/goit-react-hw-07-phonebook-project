@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useRegisterUserMutation } from 'redux/userApiSlice/userApiSlice';
 
 import {
@@ -12,9 +13,10 @@ import {
 const RegisterPage = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const navigate = useNavigate();
   const [password, setPassword] = useState('');
   const [registerUser, status] = useRegisterUserMutation();
-  const { isLoading } = status;
+  const { isSuccess } = status;
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -46,44 +48,45 @@ const RegisterPage = () => {
   };
 
   return (
-    <WrapForm>
-      <RegisterTitle>Create an account</RegisterTitle>
-      <UserRegisterForm onSubmit={handleSubmit} autoComplete="off">
-        <label>
-          <Input
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleChange}
-            placeholder="Name"
-          />
-        </label>
+    <>
+      {isSuccess && navigate('/login')}
+      <WrapForm>
+        <RegisterTitle>Create an account</RegisterTitle>
+        <UserRegisterForm onSubmit={handleSubmit} autoComplete="off">
+          <label>
+            <Input
+              type="text"
+              name="name"
+              value={name}
+              onChange={handleChange}
+              placeholder="Name"
+            />
+          </label>
 
-        <label>
-          <Input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-            placeholder="Email"
-          />
-        </label>
+          <label>
+            <Input
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="Email"
+            />
+          </label>
 
-        <label>
-          <Input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-            placeholder="Password"
-          />
-        </label>
+          <label>
+            <Input
+              type="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+              placeholder="Password"
+            />
+          </label>
 
-        <SubmitBtn type="submit" disabled={isLoading}>
-          Create account
-        </SubmitBtn>
-      </UserRegisterForm>
-    </WrapForm>
+          <SubmitBtn type="submit">Create account</SubmitBtn>
+        </UserRegisterForm>
+      </WrapForm>
+    </>
   );
 };
 

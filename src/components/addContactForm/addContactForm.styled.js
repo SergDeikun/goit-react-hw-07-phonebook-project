@@ -1,27 +1,27 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
-  margin-left: 10px;
+  width: 100%;
+  height: 100%;
 `;
-export const InputsWrap = styled.div`
-  /* padding-left: 30px; */
-`;
-export const SaveBtn = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  height: 36px;
-  min-width: 64px;
-  padding: 0px 24px 0px 24px;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.15px;
-  line-height: 20px;
-  background-color: #0088cc;
+
+export const OpenModalBtn = styled.button`
+  width: 50px;
+  height: 50px;
+  align-items: center;
+  /* background-color: #ffffff; */
+  background-color: #333333;
   color: #ffffff;
-  border-radius: 10px;
+
+  /* color: #333333; */
+  border-radius: 50%;
+  padding: 0;
+  margin-left: 26px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0.2px;
   border: none;
-  cursor: pointer;
   transition: box-shadow 250ms;
 
   &:hover {
@@ -56,4 +56,14 @@ export const PhoneWrap = styled.div`
   display: flex;
   align-items: center;
   margin-top: 16px;
+`;
+
+export const CloseBtn = styled.button`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #0088cc;
+  background-color: #ffffff;
+
+  border: none;
 `;

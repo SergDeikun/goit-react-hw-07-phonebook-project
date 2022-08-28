@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
 export const SaveBtn = styled.button`
-  position: absolute;
-  top: 25px;
-  right: 25px;
+  display: block;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
   height: 36px;
   min-width: 64px;
   padding: 0px 24px 0px 24px;
