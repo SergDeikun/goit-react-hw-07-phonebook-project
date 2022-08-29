@@ -1,9 +1,11 @@
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { IoMdContact } from 'react-icons/io';
 import { MdOutlineLocalPhone } from 'react-icons/md';
 
-import { useGetContactsQuery } from 'redux/contactsApiSlice/contactsApiSlice';
+import Header from 'components/header/header';
+import UserMenu from 'components/userMenu/userMenu';
 
 import {
   WrapPersonInfo,
@@ -15,10 +17,10 @@ import {
 } from './personInfo.styled';
 
 const PersonInfo = () => {
+  const contacts = useSelector(state => state.contacts.items);
   const { contactId } = useParams();
 
-  const { data } = useGetContactsQuery();
-  const contact = data.find(contact => contact.id === contactId);
+  const contact = contacts.find(contact => contact.id === contactId);
 
   const styleAvatarIcon = {
     fill: '#008080',
@@ -29,8 +31,11 @@ const PersonInfo = () => {
 
   return (
     <>
-      {data && (
+      {contacts && (
         <>
+          <Header>
+            <UserMenu />
+          </Header>
           <WrapPersonInfo>
             <IoMdContact size="272" style={styleAvatarIcon} />
             <Name>{contact.name}</Name>

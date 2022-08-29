@@ -4,11 +4,9 @@ const AuthMenu = () => {
   return (
     <AuthMenuWrap>
       <Title>
-        Hi! <AuhtMenuLink to={'/login'}>Sign in</AuhtMenuLink> or{' '}
-        <AuhtMenuLink to={'/register'}>register</AuhtMenuLink>{' '}
+        Hi! <AuhtMenuLink to={'/users/login'}>Sign in</AuhtMenuLink> or
+        <AuhtMenuLink to={'/users/signup'}>register</AuhtMenuLink>
       </Title>
-      {/* <AuhtMenuLink to={'/login'}>Login</AuhtMenuLink>
-      <AuhtMenuLink to={'/register'}>Register</AuhtMenuLink> */}
     </AuthMenuWrap>
   );
 };

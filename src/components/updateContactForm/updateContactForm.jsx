@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+// import { createPortal } from 'react-dom';
+
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 
-//  import { createPortal } from 'react-dom';
-import { useNavigate } from 'react-router-dom';
 import { IoIosClose } from 'react-icons/io';
 import { IoMdContact } from 'react-icons/io';
 import { MdOutlineLocalPhone } from 'react-icons/md';
 import { FaRegUser } from 'react-icons/fa';
+import { MdOutlineEdit } from 'react-icons/md';
+
 import SaveButton from 'components/saveButton/saveButton';
 
 import {
@@ -89,9 +92,13 @@ const UpdateContactForm = ({ contactId }) => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    await updateContact({ name, number });
-    setOpen(false);
-    navigate('/contacts');
+    try {
+      await updateContact({ name, number });
+      setOpen(false);
+      navigate('/contacts');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -99,7 +106,7 @@ const UpdateContactForm = ({ contactId }) => {
       {contacts && (
         <>
           <OpenModalBtn onClick={handleOpen} sx={BtnStyle}>
-            update
+            <MdOutlineEdit size={25} />
           </OpenModalBtn>
           <Modal
             open={open}

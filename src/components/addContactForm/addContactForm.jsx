@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// import { createPortal } from 'react-dom';
+
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+
 import { IoIosClose } from 'react-icons/io';
 import { IoMdContact } from 'react-icons/io';
 import { FaRegUser } from 'react-icons/fa';
 import { MdOutlineLocalPhone } from 'react-icons/md';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 import SaveButton from 'components/saveButton/saveButton';
 
 import {
@@ -44,6 +48,8 @@ const avatarStyle = {
 const BtnStyle = {
   bgcolor: '#FFFFFF',
 };
+
+// const modalRoot = document.querySelector('#modal-root');
 
 const AddContactForm = () => {
   const navigate = useNavigate();
@@ -160,7 +166,7 @@ const AddContactForm = () => {
           </Form>
         </Box>
       </Modal>
-      {/* modalRoot */}
+      {/* ,modalRoot */}
     </>
   );
 };

@@ -10,12 +10,15 @@ export const WrapLoginForm = styled.div`
   text-align: center;
 `;
 
-// export const RegisterTitle = styled.h1`
-//   text-align: center;
-//   font-size: 36px;
-//   font-weight: 700;
-//   line-height: 46px;
-// `;
+export const LoginTitle = styled.h1`
+  margin-left: 430px;
+  margin-right: auto;
+  color: #333333;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+`;
 
 export const LoginForm = styled.form`
   display: flex;

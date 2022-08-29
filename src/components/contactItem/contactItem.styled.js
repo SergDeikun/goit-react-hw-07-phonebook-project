@@ -45,6 +45,7 @@ export const Phone = styled.p`
 `;
 
 export const DeleteBtn = styled.button`
+  margin-right: 10px;
   border: none;
   background-color: #f5f5f5;
 `;

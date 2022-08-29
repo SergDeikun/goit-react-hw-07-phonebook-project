@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLoginMutation } from 'redux/userApiSlice/userApiSlice';
 
-// import Box from '@mui/material/Box';
-// import TextField from '@mui/material/TextField';
+import Header from 'components/header/header';
+import Logo from 'components/logo/logo';
 
 import {
   WrapLoginForm,
-  // RegisterTitle,
+  LoginTitle,
   LoginForm,
   Input,
   LoginBtn,
@@ -43,75 +43,51 @@ const LoginPage = () => {
       return;
     }
 
-    await login({ email, password });
-    navigate('/contacts');
-    setEmail('');
-    setPassword('');
+    try {
+      await login({ email, password });
+      navigate('/contacts');
+      setEmail('');
+      setPassword('');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <WrapLoginForm>
-      <LoginForm onSubmit={handleSubmit} autoComplete="off">
-        <label>
-          <Input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-            placeholder="Email"
-          />
-        </label>
+    <>
+      <Header>
+        <Logo />
+        <LoginTitle>Please, enter your login</LoginTitle>
+      </Header>
+      <WrapLoginForm>
+        <LoginForm onSubmit={handleSubmit} autoComplete="off">
+          <label>
+            <Input
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="Email"
+            />
+          </label>
 
-        <label>
-          <Input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-            placeholder="Password"
-          />
-        </label>
+          <label>
+            <Input
+              type="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+              placeholder="Password"
+            />
+          </label>
 
-        {/* <LoginBtn type="submit" disabled={isLoading} onClick={handleSubmit}> */}
-        <LoginBtn type="submit" onClick={handleSubmit}>
-          Login
-        </LoginBtn>
-      </LoginForm>
-    </WrapLoginForm>
+          <LoginBtn type="submit" onClick={handleSubmit}>
+            Login
+          </LoginBtn>
+        </LoginForm>
+      </WrapLoginForm>
+    </>
   );
 };
 
 export default LoginPage;
-
-// {
-//   /* <Box
-//         component="form"
-//         sx={{
-//           '& > :not(style)': { m: 1, width: '35ch' },
-//         }}
-//         // noValidate
-//         autoComplete="off"
-//       >
-//         <TextField
-//           id="outlined-basic"
-//           label="Email"
-//           variant="outlined"
-//           type="email"
-//           name="email"
-//           value={email}
-//           onChange={handleChange}
-//         />
-//         <TextField
-//           id="outlined-basic"
-//           label="Password"
-//           variant="outlined"
-//           type="password"
-//           name="password"
-//           value={password}
-//           onChange={handleChange}
-//         />
-//         <LoginBtn type="submit" onClick={handleSubmit}>
-//           Login
-//         </LoginBtn>
-//       </Box> */
-// }

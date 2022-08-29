@@ -6,6 +6,7 @@ const initialState = {
   email: '',
   token: '',
   isLoggedIn: false,
+  isRefreshing: false,
 };
 
 export const userSlice = createSlice({
@@ -44,6 +45,10 @@ export const userSlice = createSlice({
         }
       )
 
+      // .addMatcher(userApi.endpoints.currentUser.pending, state => {
+      //   state.isRefreshing = true;
+      // })
+
       .addMatcher(
         userApi.endpoints.currentUser.matchFulfilled,
         (state, { payload }) => {
@@ -55,5 +60,4 @@ export const userSlice = createSlice({
   },
 });
 
-// export const { setDataUser } = userSlice.actions;
 export default userSlice.reducer;
