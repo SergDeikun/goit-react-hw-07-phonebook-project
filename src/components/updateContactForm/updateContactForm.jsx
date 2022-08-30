@@ -57,8 +57,8 @@ const UpdateContactForm = ({ contactId }) => {
 
   const contacts = useSelector(state => state.contacts.items);
   const navigate = useNavigate();
-  const [inputName, setInputName] = useState('');
-  const [inputNumber, setInputNumber] = useState('');
+  const [setInputName] = useState('');
+  const [setInputNumber] = useState('');
   const [open, setOpen] = useState(false);
   const [updateContact] = useUpdateContactByIdMutation();
 
