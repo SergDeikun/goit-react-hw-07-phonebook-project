@@ -13,6 +13,10 @@ export const contactsSlice = createSlice({
     addContact: (state, action) => {
       state.items = [...state.items, action.payload];
     },
+
+    setContact: (state, action) => {
+      state.items = [...state.items, action.payload];
+    },
   },
 
   extraReducers: builder => {
@@ -25,7 +29,6 @@ export const contactsSlice = createSlice({
   },
 });
 
-export const { addContact, removeContact, getVisibleContacts } =
-  contactsSlice.actions;
+export const { addContact, setContact } = contactsSlice.actions;
 
 export default contactsSlice.reducer;

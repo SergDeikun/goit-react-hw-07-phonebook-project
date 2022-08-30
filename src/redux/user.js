@@ -45,9 +45,7 @@ export const userSlice = createSlice({
         }
       )
 
-      // .addMatcher(userApi.endpoints.currentUser.pending, state => {
-      //   state.isRefreshing = true;
-      // })
+     
 
       .addMatcher(
         userApi.endpoints.currentUser.matchFulfilled,

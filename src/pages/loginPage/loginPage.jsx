@@ -14,8 +14,8 @@ import {
 } from './loginPage.styled';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('zaqwerty@mail.com');
+  const [password, setPassword] = useState('zaqwerty123');
   const navigate = useNavigate();
   const [login] = useLoginMutation();
 

@@ -6,6 +6,7 @@ import { Container } from './App.styled';
 import AppBar from 'components/appBar/appBar';
 import Spinner from 'components/spinner/spinner';
 import PrivateRoute from 'components/privateRout/privateRout';
+import PublicRoute from 'components/publicRoute/publicRoute';
 import NotFound from 'pages/notFound/notFound';
 
 import { useCurrentUserQuery } from '../../redux/userApiSlice/userApiSlice';
@@ -34,63 +35,35 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
 
-          <Route
-            path="/contacts"
-            element={
-              <>
-                <AppBar />
-                <Contacts />
-              </>
-            }
-          >
-            <Route path="contacts" element={<AddContactForm />} />
-            <Route path=":contactId" element={<UpdateContactForm />} />
+          <Route path="/contacts" element={<PrivateRoute />}>
+            <Route
+              path="/contacts"
+              element={
+                <>
+                  <AppBar />
+                  <Contacts />
+                </>
+              }
+            >
+              <Route path="contacts" element={<AddContactForm />} />
+              <Route path=":contactId" element={<UpdateContactForm />} />
+            </Route>
+            <Route
+              path="/contacts/:contactId/personInfo"
+              element={<ContactCard />}
+            />
           </Route>
-          <Route
-            path="/contacts/:contactId/personInfo"
-            element={<ContactCard />}
-          />
 
+          {/* <Route path="/" element={<PublicRoute />}> */}
           <Route path="/users/login" element={<LoginPage />} />
 
           <Route path="/users/signup" element={<RegisterPage />} />
+          {/* </Route> */}
 
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </Container>
-    // <Container>
-    //   <Suspense fallback={<Spinner />}>
-    //     <Routes>
-    //       <Route path="/" element={<HomePage />} />
-
-    //       <Route path="/contacts" element={<PrivateRoute />}>
-    //         <Route
-    //           path="/contacts"
-    //           element={
-    //             <>
-    //               <AppBar />
-    //               <Contacts />
-    //             </>
-    //           }
-    //         >
-    //           <Route path="contacts" element={<AddContactForm />} />
-    //           <Route path=":contactId" element={<UpdateContactForm />} />
-    //         </Route>
-    //         <Route
-    //           path="/contacts/:contactId/personInfo"
-    //           element={<ContactCard />}
-    //         />
-    //       </Route>
-
-    //       <Route path="/users/login" element={<LoginPage />} />
-
-    //       <Route path="/users/signup" element={<RegisterPage />} />
-
-    //       <Route path="*" element={<NotFound />} />
-    //     </Routes>
-    //   </Suspense>
-    // </Container>
   );
 };
 
