@@ -9,11 +9,9 @@ export const OpenModalBtn = styled.button`
   width: 50px;
   height: 50px;
   align-items: center;
-  /* background-color: #ffffff; */
   background-color: #333333;
   color: #ffffff;
 
-  /* color: #333333; */
   border-radius: 50%;
   padding: 0;
   margin-left: 26px;

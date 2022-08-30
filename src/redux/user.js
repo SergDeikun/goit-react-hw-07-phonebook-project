@@ -45,8 +45,6 @@ export const userSlice = createSlice({
         }
       )
 
-     
-
       .addMatcher(
         userApi.endpoints.currentUser.matchFulfilled,
         (state, { payload }) => {

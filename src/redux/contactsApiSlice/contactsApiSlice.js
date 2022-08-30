@@ -34,7 +34,7 @@ export const contactsApi = createApi({
         method: 'PATCH',
         body: { name, number },
       }),
-      providesTags: ['contacts'],
+      invalidatesTags: ['contacts'],
     }),
     // ======
     deleteContact: builder.mutation({

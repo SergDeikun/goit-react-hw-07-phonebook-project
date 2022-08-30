@@ -64,11 +64,11 @@ const AddContactForm = () => {
 
     switch (name) {
       case 'name':
-        setName(value);
+        setName(value.toLowerCase());
         break;
 
       case 'number':
-        setNumber(value.toLowerCase());
+        setNumber(value);
         break;
 
       default:

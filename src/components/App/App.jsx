@@ -6,7 +6,6 @@ import { Container } from './App.styled';
 import AppBar from 'components/appBar/appBar';
 import Spinner from 'components/spinner/spinner';
 import PrivateRoute from 'components/privateRout/privateRout';
-import PublicRoute from 'components/publicRoute/publicRoute';
 import NotFound from 'pages/notFound/notFound';
 
 import { useCurrentUserQuery } from '../../redux/userApiSlice/userApiSlice';
@@ -54,11 +53,9 @@ const App = () => {
             />
           </Route>
 
-          {/* <Route path="/" element={<PublicRoute />}> */}
           <Route path="/users/login" element={<LoginPage />} />
 
           <Route path="/users/signup" element={<RegisterPage />} />
-          {/* </Route> */}
 
           <Route path="*" element={<NotFound />} />
         </Routes>

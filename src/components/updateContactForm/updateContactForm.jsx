@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 // import { setContact } from 'redux/contacts';
 
 // import { createPortal } from 'react-dom';
@@ -56,29 +58,30 @@ const UpdateContactForm = ({ contactId }) => {
   // const dispatch = useDispatch();
 
   const contacts = useSelector(state => state.contacts.items);
+  const contact = contacts
+    ? contacts.find(contact => contact.id === contactId)
+    : {};
   const navigate = useNavigate();
-  const [setInputName] = useState('');
-  const [setInputNumber] = useState('');
+  const [name, setName] = useState(contact.name);
+  const [number, setNumber] = useState(contact.number);
   const [open, setOpen] = useState(false);
   const [updateContact] = useUpdateContactByIdMutation();
 
-  const { name, number } = contacts
-    ? contacts.find(contact => contact.id === contactId)
-    : {};
-
   const handleChange = e => {
-    const { name, value } = e.target.value;
+    const { name, value } = e.target;
+
     switch (name) {
       case 'name':
-        setInputName(value.toLowerCase());
+        setName(value.toLowerCase());
         break;
+
       case 'number':
-        setInputNumber(value.toLowerCase());
+        setNumber(value);
         break;
+
       default:
         return;
     }
-    // dispatch(setContact({ name, number }));
   };
 
   const handleOpen = () => {
@@ -98,6 +101,7 @@ const UpdateContactForm = ({ contactId }) => {
       await updateContact({ contactId, name, number });
       setOpen(false);
       navigate('/contacts');
+      Notify.success(`Сontact update`);
     } catch (error) {
       console.log(error);
     }
