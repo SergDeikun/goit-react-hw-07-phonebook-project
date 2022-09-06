@@ -6,7 +6,7 @@ import Header from 'components/header/header';
 import Logo from 'components/logo/logo';
 
 import {
-  WrapLoginForm,
+  InputName,
   LoginTitle,
   LoginForm,
   Input,
@@ -14,8 +14,8 @@ import {
 } from './loginPage.styled';
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('zaqwerty@mail.com');
+  const [password, setPassword] = useState('zaqwerty123');
   const navigate = useNavigate();
   const [login] = useLoginMutation();
 
@@ -58,33 +58,32 @@ const LoginPage = () => {
         <Logo />
         <LoginTitle>Please, enter your login</LoginTitle>
       </Header>
-      <WrapLoginForm>
-        <LoginForm onSubmit={handleSubmit} autoComplete="off">
-          <label>
-            <Input
-              type="email"
-              name="email"
-              value={email}
-              onChange={handleChange}
-              placeholder="Email"
-            />
-          </label>
+      <LoginForm onSubmit={handleSubmit} autoComplete="off">
+        <label>
+          <InputName>Email</InputName>
+          <Input
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+          />
+        </label>
 
-          <label>
-            <Input
-              type="password"
-              name="password"
-              value={password}
-              onChange={handleChange}
-              placeholder="Password"
-            />
-          </label>
+        <label>
+          <InputName>Password</InputName>
+          <Input
+            type="password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
+        </label>
 
-          <LoginBtn type="submit" onClick={handleSubmit}>
-            Login
-          </LoginBtn>
-        </LoginForm>
-      </WrapLoginForm>
+        <LoginBtn type="submit" onClick={handleSubmit}>
+          Login
+        </LoginBtn>
+      </LoginForm>
+      {/* </WrapLoginForm> */}
     </>
   );
 };

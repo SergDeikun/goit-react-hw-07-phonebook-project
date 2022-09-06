@@ -5,9 +5,10 @@ import Header from 'components/header/header';
 import Logo from 'components/logo/logo';
 
 import {
-  WrapForm,
+  // WrapForm,
   RegisterTitle,
   UserRegisterForm,
+  InputName,
   Input,
   SubmitBtn,
 } from './registerPage.styled';
@@ -59,41 +60,36 @@ const RegisterPage = () => {
         <Logo />
         <RegisterTitle>Please, create an account</RegisterTitle>
       </Header>
-      <WrapForm>
-        <UserRegisterForm onSubmit={handleSubmit} autoComplete="off">
-          <label>
-            <Input
-              type="text"
-              name="name"
-              value={name}
-              onChange={handleChange}
-              placeholder="Name"
-            />
-          </label>
+      <UserRegisterForm onSubmit={handleSubmit} autoComplete="off">
+        <label>
+          <InputName>Name</InputName>
+          <Input type="text" name="name" value={name} onChange={handleChange} />
+        </label>
 
-          <label>
-            <Input
-              type="email"
-              name="email"
-              value={email}
-              onChange={handleChange}
-              placeholder="Email"
-            />
-          </label>
+        <label>
+          <InputName>Email</InputName>
 
-          <label>
-            <Input
-              type="password"
-              name="password"
-              value={password}
-              onChange={handleChange}
-              placeholder="Password"
-            />
-          </label>
+          <Input
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+          />
+        </label>
 
-          <SubmitBtn type="submit">Create account</SubmitBtn>
-        </UserRegisterForm>
-      </WrapForm>
+        <label>
+          <InputName>Password</InputName>
+
+          <Input
+            type="password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
+        </label>
+
+        <SubmitBtn type="submit">Create account</SubmitBtn>
+      </UserRegisterForm>
     </>
   );
 };

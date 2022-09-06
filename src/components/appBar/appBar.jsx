@@ -7,12 +7,14 @@ import UserMenu from 'components/userMenu/userMenu';
 
 const AppBar = () => {
   const { token } = useSelector(state => state.user);
+
   return (
     <Header>
       {token && (
         <>
           <AddContactForm />
           <Filter />
+
           <UserMenu />
         </>
       )}

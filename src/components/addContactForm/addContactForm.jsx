@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 // import { createPortal } from 'react-dom';
 
 import Box from '@mui/material/Box';
@@ -49,10 +48,9 @@ const BtnStyle = {
   bgcolor: '#FFFFFF',
 };
 
-// const modalRoot = document.querySelector('#modal-root');
+// const modalRoot = document.querySelector('#addContactModal-root');
 
 const AddContactForm = () => {
-  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [open, setOpen] = useState(false);
@@ -78,7 +76,6 @@ const AddContactForm = () => {
 
   const handleOpen = () => {
     setOpen(true);
-    navigate('/contacts');
   };
 
   const handleClose = () => {
@@ -166,8 +163,8 @@ const AddContactForm = () => {
           </Form>
         </Box>
       </Modal>
-      {/* ,modalRoot */}
     </>
+    // modalRoot
   );
 };
 

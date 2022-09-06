@@ -3,8 +3,6 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-// import { setContact } from 'redux/contacts';
-
 // import { createPortal } from 'react-dom';
 
 import Box from '@mui/material/Box';
@@ -55,8 +53,6 @@ const BtnStyle = {
 // const modalRoot = document.querySelector('#modal-root');
 
 const UpdateContactForm = ({ contactId }) => {
-  // const dispatch = useDispatch();
-
   const contacts = useSelector(state => state.contacts.items);
   const contact = contacts
     ? contacts.find(contact => contact.id === contactId)

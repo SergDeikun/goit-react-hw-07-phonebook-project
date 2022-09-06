@@ -1,15 +1,5 @@
 import styled from 'styled-components';
 
-export const WrapLoginForm = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  width: 400px;
-  height: 200px;
-  margin-top: 100px;
-
-  text-align: center;
-`;
-
 export const LoginTitle = styled.h1`
   margin-left: 430px;
   margin-right: auto;
@@ -24,12 +14,23 @@ export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
-  height: 100%;
+  width: 400px;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+`;
+
+export const InputName = styled.span`
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 30px;
+  color: #8c8c8c;
 `;
 
 export const Input = styled.input`
-  width: 300px;
+  /* width: 300px; */
+  width: 100%;
   height: 40px;
   border-radius: 8px;
   border: 1px solid #8c8c8c;
